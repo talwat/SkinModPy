@@ -19,15 +19,14 @@ while invalidInput:
         "1 - Put an overlay on a skin\n" +
         "2 - Download all the overlays from a google drive link.\n"
     )
-    match inputVar:
-        case "0":
-            quit()
-        case "1":
-            overlay.main()
-            invalidInput = False;
-        case "2":
-            overlayDownload.main()
-            invalidInput = False;
-        case _:
-            consoleClear()
-            print("Invalid Input")
+    if(inputVar == "0"):
+        quit()
+    elif(inputVar == "1"):
+        overlay.main()
+        invalidInput = False;
+    elif(inputVar == "2"):
+        overlayDownload.main()
+        invalidInput = False;
+    else:
+        consoleClear()
+        print("Invalid Input")

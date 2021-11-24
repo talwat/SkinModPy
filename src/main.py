@@ -1,8 +1,16 @@
-from PIL import Image
 import overlay
 import overlayDownload
+import os
 
-print("SkinModPy 1.0")
+def consoleClear():
+    if os.name in ("nt", "dos"):
+        os.system("cls")
+    else:
+        os.system("clear")
+
+consoleClear()
+print("SkinModPy 1.0\n")
+
 invalidInput = True
 while invalidInput:
     inputVar = input(
@@ -21,4 +29,5 @@ while invalidInput:
             overlayDownload.main()
             invalidInput = False;
         case _:
-            print("Invalid input")
+            consoleClear()
+            print("Invalid Input")

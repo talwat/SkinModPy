@@ -15,7 +15,7 @@ def consoleClear():
 consoleClear()
 
 try:
-	programInfo = loads(methods.getFromInternet())
+	programInfo = loads(methods.getFromInternet("https://raw.githubusercontent.com/talwat/SkinModPy/master/program.json"))
 except:
 	programInfo = {}
 

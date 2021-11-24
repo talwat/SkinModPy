@@ -1,4 +1,3 @@
-from PIL import Image
 import os 
 import mojang
 import methods
@@ -6,6 +5,8 @@ import methods
 def init():
     if not os.path.isdir("overlays"):
         print("Overlays directory not found, making directory...")
+        if(os.path.isfile("overlays.zip")):
+            os.remove("overlays.zip")
         methods.downloadFile("https://www.dropbox.com/s/rcdlkp9nexzn5du/overlays.zip?dl=1", "overlays.zip")
         methods.unzip("overlays.zip", "overlays")
         os.remove("overlays.zip")

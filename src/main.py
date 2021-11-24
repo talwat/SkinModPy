@@ -1,7 +1,10 @@
 import overlay
 import overlayDownload
 import os
-from methods import getInput
+from json import load, loads
+import methods
+
+version = "1.1"
 
 def consoleClear():
     if os.name in ("nt", "dos"):
@@ -10,9 +13,18 @@ def consoleClear():
         os.system("clear")
 
 consoleClear()
-print("SkinModPy 1.0\n")
 
-inputVar = getInput(
+try:
+	programInfo = loads(methods.getFromInternet())
+except:
+	programInfo = {}
+
+if(programInfo != {}):
+    if programInfo["version"] != version:
+       print("The latest version of SkinModPy is {}, but you are on {}!".format(programInfo["version"], version))
+print("SkinModPy {}\n".format(version))
+
+inputVar = methods.getInput(
     "Please enter what you would like to do:\n" +
     "0 - Exit the program\n" +
     "1 - Put an overlay on a skin\n" +

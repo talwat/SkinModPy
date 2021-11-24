@@ -1,7 +1,7 @@
 import overlay
 import overlayDownload
 import os
-from json import load, loads
+from json import loads
 import methods
 
 version = "1.1"

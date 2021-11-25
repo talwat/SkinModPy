@@ -15,7 +15,7 @@ Currently, there isn't a finished release. Sorry!
 
 ### Running From Source
 **You will need**
-* [Python 3.10](https://www.python.org/)
+* [Python 3.9](https://www.python.org/) *or later*
 * [Git](https://git-scm.com/)
 
 **How To**

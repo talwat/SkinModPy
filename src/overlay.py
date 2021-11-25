@@ -18,24 +18,39 @@ def main():
             rmtree("temp")
 
     init()
-    overlayPath = methods.parse(input("What overlay do you want? "))
+    invalidOverlay = True
+    while invalidOverlay:
+        answer = methods.parse(input("What overlay do you want? "))
+        if(os.path.isfile("overlays/{}.png".format(answer))):
+            overlayPath = answer
+            invalidOverlay = False
+        else:
+            print(answer + " does not exist.")
     nameOrFile = methods.getInput("Would you like to get a skin from a name, or a file? (n/f) ", ["n", "name", "f", "file"])
     path = ""
     if(nameOrFile == "n" or nameOrFile == "name"):
         if not os.path.isdir("temp"):
             os.mkdir("temp")
-        name = input("What is the name of the player with the skin you would like? ")
-        if(mojang.getSkin(name, "temp/skin.png") == "success"):
-            print("{}'s skin has been successfully downloaded!".format(name))
-            path = "temp/skin.png"
-        else:
-            print("{} could not be found.".format(name))
-            delTemp()
-            return
+        invalidName = True
+        while invalidName:
+            answer = input("What is the name of the player with the skin you would like? ")
+            if(mojang.getSkin(answer, "temp/skin.png") == "success"):
+                print("{}'s skin has been successfully downloaded!".format(answer))
+                path = "temp/skin.png"
+                invalidName = False
+            else:
+                print("{} could not be found.".format(answer))
     else:
-        path = input("What is the path of the skin you want? ")
+        invalidPath = True
+        while invalidPath:
+            answer = input("What is the path of the skin you want? ")
+            if os.path.isfile(answer):
+                path = answer
+                invalidPath = False
+            else:
+                print("Invalid path.")
     
-    if(os.path.isfile(path)):
+    if os.path.isfile(path):
         print("Overlaying Image...")
         methods.overlayImage(path, "overlays/{}.png".format(overlayPath), "output.png")
         print("Image overlayed!")

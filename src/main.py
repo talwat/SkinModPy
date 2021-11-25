@@ -4,7 +4,7 @@ import os
 from json import loads
 import methods
 
-version = "1.1"
+version = "1.2"
 
 def consoleClear():
     if os.name in ("nt", "dos"):

@@ -1,62 +1,52 @@
 import os 
 import mojang
 import methods
+import overlayDownload
 
-def init():
-    if not os.path.isdir("overlays"):
-        print("Overlays directory not found, making directory...")
-        if(os.path.isfile("overlays.zip")):
-            os.remove("overlays.zip")
-        methods.downloadFile("https://www.dropbox.com/s/rcdlkp9nexzn5du/overlays.zip?dl=1", "overlays.zip")
-        methods.unzip("overlays.zip", "overlays")
-        os.remove("overlays.zip")
-
-def main():
+def main(overlayInput, nameOrFileInput, nameOrPathInput):
     def delTemp():
         if os.path.isdir("temp"):
+            methods.log("Removing temp directory...")
             from shutil import rmtree
             rmtree("temp")
 
-    init()
-    invalidOverlay = True
-    while invalidOverlay:
-        answer = methods.parse(input("What overlay do you want? "))
-        if(os.path.isfile("overlays/{}.png".format(answer))):
-            overlayPath = answer
-            invalidOverlay = False
-        else:
-            print(answer + " does not exist.")
-    nameOrFile = methods.getInput("Would you like to get a skin from a name, or a file? (n/f) ", ["n", "name", "f", "file"])
+    if not os.path.isdir("overlays"):
+        methods.log("Overlays directory not found.", "error")
+        overlayDownload.main()
+    overlayInputParsed = methods.parse(overlayInput)
+    if(os.path.isfile("overlays/{}.png".format(overlayInputParsed))):
+        overlayPath = overlayInputParsed
+    else:
+        methods.log("Overlay not found.", "fatal")
+        return "error.overlay"
+    nameOrFile = nameOrFileInput
     path = ""
     if(nameOrFile == "n" or nameOrFile == "name"):
         if not os.path.isdir("temp"):
+            methods.log("Making temp directory...");
             os.mkdir("temp")
-        invalidName = True
-        while invalidName:
-            answer = input("What is the name of the player with the skin you would like? ")
-            if(mojang.getSkin(answer, "temp/skin.png") == "success"):
-                print("{}'s skin has been successfully downloaded!".format(answer))
-                path = "temp/skin.png"
-                invalidName = False
-            else:
-                print("{} could not be found.".format(answer))
+        methods.log("Downloading skin...")
+        if not(mojang.getSkin(nameOrPathInput, "temp/skin.png") == "success"):
+            methods.log("User not found.", "fatal")
+            delTemp()
+            return "error.skinGet"
+        else:
+            path = "temp/skin.png"
     else:
-        invalidPath = True
-        while invalidPath:
-            answer = input("What is the path of the skin you want? ")
-            if os.path.isfile(answer):
-                path = answer
-                invalidPath = False
-            else:
-                print("Invalid path.")
+        if os.path.isfile(nameOrPathInput):
+            path = nameOrPathInput
+        else:
+            methods.log("The file couldn't be found.", "fatal")
+            delTemp()
+            return "error.path"
     
     if os.path.isfile(path):
-        print("Overlaying Image...")
+        methods.log("Overlaying images...");
         methods.overlayImage(path, "overlays/{}.png".format(overlayPath), "output.png")
-        print("Image overlayed!")
         delTemp()
-        print("Done!")
+        methods.log("Done!", "success")
+        return "success"
     else:
-        print("Path is invalid")
+        methods.log("The path couldn't be found.", "fatal")
         delTemp()
-        return
+        return "error.laterPath"

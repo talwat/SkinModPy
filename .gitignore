@@ -3,3 +3,4 @@ test/
 overlays/
 temp/
 output.png
+.vscode/

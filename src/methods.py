@@ -1,6 +1,17 @@
 import urllib.request
 import base64
+import os
 
+logTypes = {
+    "success": "[SUCCESS]: ",
+    "info": "[INFO]: ",
+    "warn": "[WARN]: ",
+    "error": "[ERROR]: ",
+    "fatal": "[FATAL]: "
+}
+
+def log(message, logType = "info"):
+    print(logTypes[logType] + message)
 def getFromInternet(url):
     result = ""
     file = urllib.request.urlopen(url)
@@ -22,16 +33,6 @@ def unzip(zipFilePath, pathToExtract):
     with zipfile.ZipFile(zipFilePath, 'r') as zip_ref:
         zip_ref.extractall(pathToExtract)
 
-def getInput(prompt, validInputs):
-    keepAsking = True
-    while keepAsking:
-        answer = parse(input(prompt))
-        for validInput in validInputs:
-            if answer == validInput:
-                keepAsking = False;
-                return answer
-        print("Invalid Input")
-
 def overlayImage(skinPath, overlayPath, outputPath):
     from PIL import Image
     img = Image.open(skinPath)
@@ -45,3 +46,9 @@ def parse(input):
     result = result.lower()
     result = result.replace(" ", "")
     return result
+
+def consoleClear():
+    if os.name in ("nt", "dos"):
+        os.system("cls")
+    else:
+        os.system("clear")

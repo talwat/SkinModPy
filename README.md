@@ -32,9 +32,9 @@ Then, you will need to install pillow.
 
 Finally, to run the program, do:
 
-* **MAC & LINUX** `python src/main.py`
+* **MAC & LINUX** `python src/mainThread.py`
 
-* **WINDOWS** `py src/main.py`
+* **WINDOWS** `py src/mainThread.py`
 
 ## Contribution
 I dont really want code contribution due to how small this program is.

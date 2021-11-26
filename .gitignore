@@ -4,3 +4,6 @@ overlays/
 temp/
 output.png
 .vscode/
+/mainThread.spec
+build/
+dist/

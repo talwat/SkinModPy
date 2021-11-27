@@ -24,11 +24,9 @@ You will need to execute these commands in order to successfully clone the repos
 git clone https://github.com/talwat/SkinModPy
 cd SkinModPy
 ```
-Then, you will need to install pillow.
+Then, you will need to install the dependencies.
 
-* **MAC & LINUX** `pip install Pillow`
-
-* **WINDOWS** `py -m pip install Pillow`
+A list can be found in `requirements.txt`
 
 Finally, to run the program, do:
 

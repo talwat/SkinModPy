@@ -5,10 +5,10 @@ import overlayDownload
 
 def main(overlayInput, nameOrFileInput, nameOrPathInput):
     def delTemp():
-        if os.path.isdir("temp"):
+        if os.path.isdir("skinmodpy-temp"):
             methods.log("Removing temp directory...")
             from shutil import rmtree
-            rmtree("temp")
+            rmtree("skinmodpy-temp")
 
     if not os.path.isdir("overlays"):
         methods.log("Overlays directory not found.", "error")
@@ -22,16 +22,16 @@ def main(overlayInput, nameOrFileInput, nameOrPathInput):
     nameOrFile = nameOrFileInput
     path = ""
     if(nameOrFile == "n" or nameOrFile == "name"):
-        if not os.path.isdir("temp"):
+        if not os.path.isdir("skinmodpy-temp"):
             methods.log("Making temp directory...");
-            os.mkdir("temp")
+            os.mkdir("skinmodpy-temp")
         methods.log("Downloading skin...")
         if not(mojang.getSkin(nameOrPathInput, "temp/skin.png") == "success"):
             methods.log("User not found.", "fatal")
             delTemp()
             return "error.skinGet"
         else:
-            path = "temp/skin.png"
+            path = "skinmodpy-temp/skin.png"
     else:
         if os.path.isfile(nameOrPathInput):
             path = nameOrPathInput

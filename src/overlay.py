@@ -26,7 +26,7 @@ def main(overlayInput, nameOrFileInput, nameOrPathInput):
             methods.log("Making temp directory...");
             os.mkdir("skinmodpy-temp")
         methods.log("Downloading skin...")
-        if not(mojang.getSkin(nameOrPathInput, "temp/skin.png") == "success"):
+        if not(mojang.getSkin(nameOrPathInput, "skinmodpy-temp/skin.png") == "success"):
             methods.log("User not found.", "fatal")
             delTemp()
             return "error.skinGet"

@@ -11,7 +11,8 @@ Its main use is for events like christmas, to give your skin a cool christmas vi
 You can either install the executable from the releases tab, or install the source and run it with the python interpreter.
 
 ### Downloading From Releases
-Currently, there isn't a finished release. Sorry!
+Due to Windows Defender, releases will not be utilized.
+You will need to compile from source, sorry!
 
 ### Running From Source
 **You will need**

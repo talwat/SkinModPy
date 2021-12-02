@@ -1,54 +1,51 @@
-import os 
+#TODO: Make the code more polished and less 💩
+
+import os
+
+from PIL import Image 
 import mojang
 import methods
 import overlayDownload
 
 def main(overlayInput, nameOrFileInput, nameOrPathInput):
-    def delTemp():
-        if os.path.isdir("skinmodpy-temp"):
-            methods.log("Removing temp directory...")
-            from shutil import rmtree
-            rmtree("skinmodpy-temp")
-
     if not os.path.isdir("overlays"):
         methods.log("Overlays directory not found.", "error")
         overlayDownload.main()
-    overlayInputParsed = methods.parse(overlayInput)
-    if(os.path.isfile("overlays/{}.png".format(overlayInputParsed))):
+    overlayInputParsed = "overlays/{}.png".format(methods.parse(overlayInput))
+    if(os.path.isfile(overlayInputParsed)):
         overlayPath = overlayInputParsed
     else:
         methods.log("Overlay not found.", "fatal")
         return "error.overlay"
+    overlay = Image.open(overlayPath)
     nameOrFile = nameOrFileInput
-    path = ""
     if(nameOrFile == "n" or nameOrFile == "name"):
-        if not os.path.isdir("skinmodpy-temp"):
-            methods.log("Making temp directory...");
-            os.mkdir("skinmodpy-temp")
         methods.log("Downloading skin...")
-        if not(mojang.getSkin(nameOrPathInput, "skinmodpy-temp/skin.png") == "success"):
+        if not(mojang.getSkin(nameOrPathInput, "downloadedSkin.png") == "success"):
             methods.log("User not found.", "fatal")
-            delTemp()
             return "error.skinGet"
         else:
-            path = "skinmodpy-temp/skin.png"
+            methods.log("Loading skin...")
+            skin = Image.open("downloadedSkin.png")
     else:
         if os.path.isfile(nameOrPathInput):
-            path = nameOrPathInput
+            methods.log("Loading skin...")
+            skin = Image.open(nameOrPathInput)
         else:
             methods.log("The file couldn't be found.", "fatal")
-            delTemp()
             return "error.path"
     
-    if os.path.isfile(path):
-        methods.log("Overlaying images...");
-        methods.overlayImage(path, "overlays/{}.png".format(overlayPath), "skinmodpy-temp/outputWithNoColorChange.png")
-        methods.log("Removing hex color #FD00FE...")
-        methods.replacePixels((253, 0, 254), "skinmodpy-temp/outputWithNoColorChange.png", "output.png")
-        delTemp()
-        methods.log("Done!", "success")
-        return "success"
-    else:
-        methods.log("The path couldn't be found.", "fatal")
-        delTemp()
-        return "error.laterPath"
+    methods.log("Overlaying images...");
+    overlayedImage = methods.overlayImage("image", skin, overlay)
+    methods.log("Removing hex color #FD00FE...")
+    finalImage = methods.replacePixels((253, 0, 254), "image", overlayedImage)
+    methods.log("Saving output...")
+    finalImage.save("output.png")
+    methods.log("Closing images...")
+    overlayedImage.close()
+    skin.close()
+    overlay.close()
+    if(os.path.isfile("downloadedSkin.png")):
+        methods.log("Deleting downloaded skin from the Mojang API...")
+    methods.log("Done!", "success")
+    return "success"

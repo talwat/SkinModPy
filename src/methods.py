@@ -14,8 +14,11 @@ logTypes = {
 def log(message, logType = "info"):
     print(logTypes[logType] + message)
 
-def replacePixels(color, inputPath, outputPath):
-    img = Image.open(inputPath)
+def replacePixels(color, pathOrImage, input):
+    if(pathOrImage == "path" or pathOrImage == "p"):
+        img = Image.open(input)
+    else:
+        img = input
     img = img.convert("RGBA")
     datas = img.getdata()
 
@@ -31,7 +34,7 @@ def replacePixels(color, inputPath, outputPath):
             newData.append(item)
 
     img.putdata(newData)
-    img.save(outputPath, "PNG")
+    return img
 
 def getFromInternet(url):
     result = ""
@@ -54,12 +57,16 @@ def unzip(zipFilePath, pathToExtract):
     with zipfile.ZipFile(zipFilePath, 'r') as zip_ref:
         zip_ref.extractall(pathToExtract)
 
-def overlayImage(skinPath, overlayPath, outputPath):
+def overlayImage(pathOrImage, skin, overlay):
     from PIL import Image
-    img = Image.open(skinPath)
-    overlay = Image.open(overlayPath)
-    img.paste(overlay, (0, 0), overlay)
-    img.save(outputPath, "PNG")
+    if(pathOrImage == "path" or pathOrImage == "p"):
+        img = Image.open(skin)
+        img2 = Image.open(overlay)
+    else:
+        img = skin
+        img2 = overlay
+    img.paste(img2, (0, 0), img2)
+    return img
 
 def parse(input):
     result = ""

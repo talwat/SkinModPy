@@ -1,7 +1,7 @@
 from json import loads
 from methods import getFromInternet
 
-version = "1.3"
+version = "1.4 Beta"
 latestVersion = version
 
 def versionGet():
@@ -11,6 +11,6 @@ def versionGet():
     	programInfo = {}
 
     if(programInfo != {}):
-       return programInfo["version"]
+        return programInfo["version"]
     else:
         return version

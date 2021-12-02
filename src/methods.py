@@ -1,6 +1,7 @@
 import urllib.request
 import base64
 import os
+from PIL import Image
 
 logTypes = {
     "success": "[SUCCESS]: ",
@@ -12,6 +13,26 @@ logTypes = {
 
 def log(message, logType = "info"):
     print(logTypes[logType] + message)
+
+def replacePixels(color, inputPath, outputPath):
+    img = Image.open(inputPath)
+    img = img.convert("RGBA")
+    datas = img.getdata()
+
+    newData = []
+    for item in datas:
+        if(
+            item[0] == color[0]
+            and item[1] == color[1]
+            and item[2] == color[2]
+        ):
+            newData.append((255, 255, 255, 0))
+        else:
+            newData.append(item)
+
+    img.putdata(newData)
+    img.save(outputPath, "PNG")
+
 def getFromInternet(url):
     result = ""
     file = urllib.request.urlopen(url)

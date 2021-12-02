@@ -42,7 +42,9 @@ def main(overlayInput, nameOrFileInput, nameOrPathInput):
     
     if os.path.isfile(path):
         methods.log("Overlaying images...");
-        methods.overlayImage(path, "overlays/{}.png".format(overlayPath), "output.png")
+        methods.overlayImage(path, "overlays/{}.png".format(overlayPath), "skinmodpy-temp/outputWithNoColorChange.png")
+        methods.log("Removing hex color #FD00FE...")
+        methods.replacePixels((253, 0, 254), "skinmodpy-temp/outputWithNoColorChange.png", "output.png")
         delTemp()
         methods.log("Done!", "success")
         return "success"

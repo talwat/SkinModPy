@@ -11,8 +11,9 @@ Its main use is for events like christmas, to give your skin a cool christmas vi
 You can either install the executable from the releases tab, or install the source and run it with the python interpreter.
 
 ### Downloading From Releases
-Due to Windows Defender, releases will not be utilized.
-You will need to compile from source, sorry!
+If you are on windows, you are able to download from a release. 
+
+However, if you use Linux or macOS, you will need to compile from source.
 
 ### Running From Source
 **You will need**
@@ -27,15 +28,19 @@ cd SkinModPy
 ```
 Then, you will need to install the dependencies.
 
-A list can be found in `requirements.txt`
+`pip install -r requirements.txt`
 
 Finally, to run the program, do:
 
-* **MAC & LINUX** `python src/mainThread.py`
+* **MAC & LINUX** `python src/main.py`
 
-* **WINDOWS** `py src/mainThread.py`
+* **WINDOWS** `py src/main.py`
+
+Or, if you want to build it as a binary, you can run the apropriate script in the `scripts` folder.
 
 ## Contribution
-I dont really want code contribution due to how small this program is.
+I dont really want code contributions due to how small this program is.
 
 However, if you want to add a built in overlay, you can message me on discord `Talwat#2277` with the png of the overlay you would like to add.
+
+I will make a guide to making a custom overlay eventually.

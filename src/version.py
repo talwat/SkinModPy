@@ -1,7 +1,7 @@
 from json import loads
 from methods import getFromInternet
 
-version = "1.4.7"
+version = "1.4.8"
 latestVersion = version
 
 def versionGet():

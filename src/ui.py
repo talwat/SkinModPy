@@ -25,4 +25,5 @@ def main():
             window.FindElement('output').Update('')
             overlay.main(values[1], values[0])
         if event == 'Download Latest Overlays':
+            window.FindElement('output').Update('')
             overlayDownload.main()

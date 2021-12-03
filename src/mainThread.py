@@ -9,7 +9,7 @@ print("SkinModPy {}\n".format(version.version))
 if(".py" in args[0]):
     args.pop(0)
 
-if(len(args) <= 1):
+if(len(args) <= 2):
     ui.main()
 else:
     overlay.main(args[0], args[1])

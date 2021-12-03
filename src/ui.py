@@ -17,9 +17,8 @@ def main():
         if not(latestVersion.endswith("beta") or latestVersion.endswith("alpha") or latestVersion.endswith("dev")):
             layout.insert(0, [sg.Text("The latest version of SkinModPy is {}, but you are on {}!".format(latestVersion, version.version), text_color="#ffa500")])
     window = sg.Window('SkinModPy ' + version.version, layout)
-    while True:                             # The Event Loop
+    while True:
         event, values = window.read()
-        # print(event, values) #debug
         if event in (None, 'Exit', 'Cancel', 'Quit'):
             break
         if event == 'Overlay!':

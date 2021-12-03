@@ -1,7 +1,6 @@
 import urllib.request
 import base64
 import os
-from PIL import Image
 
 logTypes = {
     "success": "[SUCCESS]: ",
@@ -14,11 +13,8 @@ logTypes = {
 def log(message, logType = "info"):
     print(logTypes[logType] + message)
 
-def replacePixels(color, pathOrImage, input):
-    if(pathOrImage == "path" or pathOrImage == "p"):
-        img = Image.open(input)
-    else:
-        img = input
+def replacePixels(color, input):
+    img = input
     img = img.convert("RGBA")
     datas = img.getdata()
 
@@ -57,14 +53,9 @@ def unzip(zipFilePath, pathToExtract):
     with zipfile.ZipFile(zipFilePath, 'r') as zip_ref:
         zip_ref.extractall(pathToExtract)
 
-def overlayImage(pathOrImage, skin, overlay):
-    from PIL import Image
-    if(pathOrImage == "path" or pathOrImage == "p"):
-        img = Image.open(skin)
-        img2 = Image.open(overlay)
-    else:
-        img = skin
-        img2 = overlay
+def overlayImage(skin, overlay):
+    img = skin
+    img2 = overlay
     img.paste(img2, (0, 0), img2)
     return img
 

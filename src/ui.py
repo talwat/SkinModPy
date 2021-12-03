@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import overlay
+import overlayDownload
 import version
 
 def main():
@@ -8,7 +9,7 @@ def main():
         [sg.Text('Overlay Name'), sg.InputText()],
         [sg.Text('\nOutput:')],
         [sg.Output(size=(88, 20), key="output")],
-        [sg.Button('Overlay!'), sg.Button('Quit')]
+        [sg.Button('Overlay!'), sg.Button('Download Latest Overlays')]
     ]
     latestVersion = version.versionGet()
     if latestVersion != version.version:
@@ -23,8 +24,6 @@ def main():
             break
         if event == 'Overlay!':
             window.FindElement('output').Update('')
-            if("/" in values[0] or "." in values[1]):
-                nameOrFile = "f"
-            else:
-                nameOrFile = "n"
-            overlay.main(values[1], nameOrFile, values[0])
+            overlay.main(values[1], values[0])
+        if event == 'Download Latest Overlays':
+            overlayDownload.main()

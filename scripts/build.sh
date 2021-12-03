@@ -1,3 +1,2 @@
 #!/bin/bash
-cd ..
-python3 -m pyinstaller --onefile -wF src/mainThread.py
+python3 -m pyinstaller --onefile -wF src/main.py

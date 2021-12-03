@@ -1,2 +1,1 @@
-cd ..
-py -m PyInstaller --onefile -wF src/mainThread.py
+py -m PyInstaller --onefile -wF src/main.py

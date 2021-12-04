@@ -10,6 +10,17 @@ logTypes = {
     "fatal": "[FATAL]: ",
 }
 
+def filePath(input):
+    if("/" in input or "." in input):
+        return False
+    else:
+        return True
+
+def safelyRemoveFile(path, message):
+    if(os.path.isfile(path)):
+        log(message)
+        os.remove(path)
+
 def log(message, logType="info"):
     print(logTypes[logType] + message)
 

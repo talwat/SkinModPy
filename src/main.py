@@ -1,15 +1,7 @@
 import ui
-import version
-import sys
 import overlay
+import version
 
-args = sys.argv
 print("SkinModPy {}\n".format(version.version))
 
-if(".py" in args[0]):
-    args.pop(0)
-
-if(len(args) <= 2):
-    ui.main()
-else:
-    overlay.main(args[0], args[1])
+ui.main()

@@ -1,15 +1,14 @@
 import PySimpleGUI as sg
 import overlay
-import overlayDownload
 import version
 
 def main():
     layout = [
         [sg.Text('Skin Path/Username'), sg.InputText(), sg.FileBrowse()],
-        [sg.Text('Overlay Name'), sg.InputText()],
+        [sg.Text('Overlay Path/Name'), sg.InputText(), sg.FileBrowse()],
         [sg.Text('\nOutput:')],
         [sg.Output(size=(88, 20), key="output")],
-        [sg.Button('Overlay!'), sg.Button('Download Latest Overlays')]
+        [sg.Button('Overlay!')]
     ]
     latestVersion = version.versionGet()
     if latestVersion != version.version:
@@ -24,6 +23,3 @@ def main():
         if event == 'Overlay!':
             window.FindElement('output').Update('')
             overlay.main(values[1], values[0])
-        if event == 'Download Latest Overlays':
-            window.FindElement('output').Update('')
-            overlayDownload.main()

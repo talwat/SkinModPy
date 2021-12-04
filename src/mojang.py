@@ -3,14 +3,16 @@ import methods
 
 def getSkin(name, outputPath):
     uuid = ""
-    rawNameData = methods.getFromInternet("https://api.mojang.com/users/profiles/minecraft/{}".format(name))
+    try:
+        rawNameData = methods.getFromInternet("https://api.mojang.com/users/profiles/minecraft/{}".format(name))
+    except:
+        return "error"
 
     if(len(rawNameData) > 0):
         userInfo = loads(rawNameData)
         uuid = userInfo["id"]
-        
     else:
-        return "error"
+        return "404"
     
     rawUuidData = methods.getFromInternet("https://sessionserver.mojang.com/session/minecraft/profile/{}".format(uuid))
     uuidData = loads(rawUuidData)

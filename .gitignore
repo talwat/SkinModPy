@@ -6,5 +6,5 @@ output.png
 .vscode/
 build/
 dist/
-/downloadedSkin.png
+downloaded*
 *.spec

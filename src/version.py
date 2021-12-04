@@ -1,7 +1,7 @@
 from json import loads
 from methods import getFromInternet
 
-version = "1.5 Beta"
+version = "1.5"
 latestVersion = version
 
 

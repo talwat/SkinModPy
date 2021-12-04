@@ -4,7 +4,7 @@ overlays/
 temp/
 output.png
 .vscode/
-/mainThread.spec
 build/
 dist/
 /downloadedSkin.png
+*.spec

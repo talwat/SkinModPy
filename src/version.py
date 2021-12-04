@@ -4,13 +4,14 @@ from methods import getFromInternet
 version = "1.4.8"
 latestVersion = version
 
+
 def versionGet():
     try:
-    	programInfo = loads(getFromInternet("https://raw.githubusercontent.com/talwat/SkinModPy/master/program.json"))
+        programInfo = loads(getFromInternet("https://raw.githubusercontent.com/talwat/SkinModPy/master/program.json"))
     except:
-    	programInfo = {}
+        programInfo = {}
 
-    if(programInfo != {}):
+    if programInfo != {}:
         return programInfo["version"]
     else:
         return version

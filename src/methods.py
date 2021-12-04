@@ -7,10 +7,10 @@ logTypes = {
     "info": "[INFO]: ",
     "warn": "[WARN]: ",
     "error": "[ERROR]: ",
-    "fatal": "[FATAL]: "
+    "fatal": "[FATAL]: ",
 }
 
-def log(message, logType = "info"):
+def log(message, logType="info"):
     print(logTypes[logType] + message)
 
 def replacePixels(color, input):
@@ -20,11 +20,7 @@ def replacePixels(color, input):
 
     newData = []
     for item in datas:
-        if(
-            item[0] == color[0]
-            and item[1] == color[1]
-            and item[2] == color[2]
-        ):
+        if item[0] == color[0] and item[1] == color[1] and item[2] == color[2]:
             newData.append((255, 255, 255, 0))
         else:
             newData.append(item)
@@ -36,12 +32,12 @@ def getFromInternet(url):
     result = ""
     file = urllib.request.urlopen(url)
     for line in file:
-	    decoded_line = line.decode("utf-8")
-	    result += decoded_line
+        decoded_line = line.decode("utf-8")
+        result += decoded_line
     return result
 
 def base64Decode(input):
-    base64_bytes = input.encode('ascii')
+    base64_bytes = input.encode("ascii")
     message_bytes = base64.b64decode(base64_bytes)
     return message_bytes
 
@@ -50,7 +46,7 @@ def downloadFile(url, path):
 
 def unzip(zipFilePath, pathToExtract):
     import zipfile
-    with zipfile.ZipFile(zipFilePath, 'r') as zip_ref:
+    with zipfile.ZipFile(zipFilePath, "r") as zip_ref:
         zip_ref.extractall(pathToExtract)
 
 def overlayImage(skin, overlay):

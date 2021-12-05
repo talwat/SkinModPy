@@ -55,6 +55,10 @@ Every overlay used with SkinModPy will have the color #FD00FE removed from the f
 All overlays are stored [here](https://github.com/talwhat/SkinModPy-Database), so you can open a pull request to add overlays or download the ones you like individually for offline use.
 
 ## Why a GUI?
-The program has a GUI to make it easier and faster to use, however if the os you use has issues with PySimpleGUI or its dependencies, you can modify the code to skip the GUI and go straight to overlaying.
+The program has a GUI to make it easier and faster to use, however if the os you use has issues with PySimpleGUI or its dependencies, you can run the CLI file instead.
 
-You can edit `main.py`, and instead of the last line to be `overlay.main(<overlay>, <skin>)` instead of `ui.main()` and it will work!
+If you want to use a CLI instead, you can run `cli.py` instead of `main.py`
+
+* **MAC & LINUX** `python src/cli.py`
+
+* **WINDOWS** `py src/cli.py`

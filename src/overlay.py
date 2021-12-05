@@ -18,7 +18,7 @@ def main(overlayInput, input):
     overlayedImage.close()
     skin.close()
     overlay.close()
-    methods.safelyRemoveFile("downloadSkin.png", "Deleting downloaded skin from the Mojang API...")
+    methods.safelyRemoveFile("downloadedSkin.png", "Deleting downloaded skin from the Mojang API...")
     methods.safelyRemoveFile("downloadedOverlay.png", "Deleting downloaded overlay from the SkinModPy database...")
     methods.log("Done!", "success")
     return "success"

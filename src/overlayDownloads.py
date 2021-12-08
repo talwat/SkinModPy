@@ -14,10 +14,9 @@ def overlay(database, input):
             overlay = Image.open("downloadedOverlay.png")
             return overlay
         elif(overlayResponse == "404"):
-            methods.log("Overlay not found", "fatal")
+            methods.log("Overlay not found.", "fatal")
             return "error.overlay404"
         else:
-            methods.log("An error occured while downloading the overlay.", "fatal")
             return "error.overlay"
     else:
         if os.path.isfile(input):
@@ -29,7 +28,6 @@ def overlay(database, input):
             return "error.overlayPath"
 def skin(name, input):
     if(name):
-        methods.log("Downloading skin...")
         skinResponse = getSkin(input, "downloadedSkin.png")
         if(skinResponse == "success"):
             methods.log("Loading skin...")
@@ -39,7 +37,6 @@ def skin(name, input):
             methods.log("Skin not found", "fatal")
             return "error.skin404"
         else:
-            methods.log("An error occured while downloading the skin.", "fatal")
             return "error.skin"
     else:
         if os.path.isfile(input):

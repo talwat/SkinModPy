@@ -24,5 +24,5 @@ def main(overlayInput, input):
         methods.log("Done!", "success")
         return "success"
     except Exception as e:
-        methods.log(e, "fatal")
+        methods.log("An error occured: {}.".format(str(e)), "fatal")
         return "error"

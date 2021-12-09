@@ -12,5 +12,5 @@ def init():
     files = json.loads(rawFiles)
     methods.log("Loading all overlay names into a list...")
     for file in files:
-        fileNames.append(file["name"])
+        fileNames.append(file["name"].split(".")[0])
     methods.log("Done getting info from the Github API!", "success")

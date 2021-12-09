@@ -4,7 +4,7 @@ overlays/
 temp/
 output.png
 .vscode/
-build/
+/build/
 dist/
 downloaded*
 *.spec

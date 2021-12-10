@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 -m pyinstaller --onefile -wF src/main.py
+python3 -m PyInstaller --onefile -wF src/main.py

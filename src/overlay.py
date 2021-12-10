@@ -1,12 +1,12 @@
 import methods
-import overlayDownloads
+import downloads
 
 def main(overlayInput, input):
     try:
-        skin = overlayDownloads.skin(methods.filePath(input), input)
+        skin = downloads.skin(methods.filePath(input), input)
         if("error" in str(skin)):
             return
-        overlay = overlayDownloads.overlay(methods.filePath(overlayInput), overlayInput)
+        overlay = downloads.overlay(methods.filePath(overlayInput), overlayInput)
         if("error" in str(overlay)):
             return
         methods.log("Overlaying images...");

@@ -20,7 +20,10 @@ def main():
             sg.Radio('Name', "overlayRadio", key="overlayRadio1", default=True, enable_events=True), 
             sg.Radio('Path', "overlayRadio", key="overlayRadio2", default=False, enable_events=True),
         ],
-        [sg.Column(layout1, visible=True, key='overlayPath'), sg.Column(layout2, visible=False, key='overlayName')],
+        [
+            sg.Column(layout1, visible=True, key='overlayPath'),
+            sg.Column(layout2, visible=False, key='overlayName')
+        ],
         [sg.Text()],
         [sg.Text('Output:')],
         [sg.Output(size=(88, 20), key="output")],
